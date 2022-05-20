@@ -12,22 +12,22 @@ void countingsort(int arr[], int size)
     range = range + 1;
     int output[size];
     int temp[range];
-    for (int i = 0; i < range; i++) {
+    for (int i = 0; i < range; i++) {             //setting index array as 0 to avoid errors
         temp[i] = 0;
     }
-    for (int j = 0; j < size; j++) {
+    for (int j = 0; j < size; j++) {             //counting the occurances of each number and incrementing in the index array
         temp[arr[j]] = temp[arr[j]] + 1;
     }
-    for (int k = 1; k < range; k++) {
+    for (int k = 1; k < range; k++) {           //summing the occurances of index array from left to right side
         temp[k] = temp[k] + temp[k - 1];
     }
 
-    for (int l = (size - 1); l >= 0; l--) {
+    for (int l = (size - 1); l >= 0; l--) {     //putting the elements in sorted order and decreasing their occurance each time we insert the number
         output[temp[arr[l]]] = arr[l];
         temp[arr[l]] = temp[arr[l]] - 1;
     }
-    for (int i = 0; i < size; i++) {
-        arr[i] = output[i + 1];
+    for (int i = 0; i < size; i++) {            // storing values from output array to initial array
+        arr[i] = output[i + 1];                 // there is a +1 because elements in output array were only sorted excluding position 0
     }
 }
 int main()
